@@ -1,0 +1,1456 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ♡</title>
+
+<style>
+:root {
+  --pink: #f58ab5;
+  --light: #ffe5ef;
+  --dark: #a83268;
+  --text: #67334c;
+  --white: #fffafd;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Georgia, serif;
+  color: var(--text);
+  background: linear-gradient(135deg,#fff4f8,#fbd5e5,#f7b9d2);
+  overflow-x: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
+
+button {
+  border: none;
+  padding: 14px 30px;
+  border-radius: 30px;
+  background: linear-gradient(120deg,#f58ab5,#d94f8c);
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 7px 20px #b94c7b40;
+  transition: .3s;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px #b94c7b55;
+}
+
+.screen {
+  min-height: 100vh;
+  padding: 30px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.panel {
+  width: min(850px,100%);
+  padding: clamp(25px,5vw,50px);
+  background: #ffffffdf;
+  border: 1px solid white;
+  border-radius: 28px;
+  box-shadow: 0 15px 50px #9f456b25;
+  backdrop-filter: blur(10px);
+}
+
+h1 {
+  color: var(--dark);
+  font-size: clamp(2rem,6vw,3.5rem);
+  margin: 15px 0;
+}
+
+h2 {
+  color: var(--dark);
+  margin: 15px 0;
+  font-size: clamp(1.5rem,4vw,2.4rem);
+}
+
+p {
+  line-height: 1.8;
+  margin: 14px 0;
+  font-size: 1.05rem;
+}
+
+.small {
+  font-size: .9rem;
+  color: #a05b7b;
+}
+
+/* INTRODUCTION */
+
+#intro {
+  background: #080609;
+  color: white;
+  cursor: pointer;
+}
+
+.intro-note {
+  max-width: 700px;
+  padding: 28px;
+}
+
+.intro-note p {
+  font-family: Arial,sans-serif;
+  font-size: clamp(1.1rem,3vw,1.4rem);
+  line-height: 1.9;
+  color: #f8eaf0;
+}
+
+.intro-note .sign {
+  color: #f2a2c4;
+}
+
+.pulse {
+  animation: pulse 1.6s infinite;
+  color: #f6b4d0;
+  margin-top: 45px;
+  letter-spacing: 2px;
+  font: 13px Arial,sans-serif;
+}
+
+@keyframes pulse {
+  50% { opacity: .35; }
+}
+
+/* HEART TREE */
+
+.tree-wrap {
+  height: 370px;
+  max-width: 560px;
+  margin: 20px auto;
+}
+
+.tree-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.heart {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pop .7s both, sway 3.4s ease-in-out infinite alternate;
+}
+
+@keyframes pop {
+  0% { opacity: 0; transform: scale(0); }
+  75% { transform: scale(1.18); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes sway {
+  to { translate: 3px -5px; rotate: 5deg; }
+}
+
+.float-heart {
+  position: fixed;
+  bottom: -30px;
+  color: #ed75a5;
+  opacity: .7;
+  pointer-events: none;
+  animation: floatUp 8s linear forwards;
+  z-index: 5;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh) rotate(30deg);
+    opacity: 0;
+  }
+}
+
+/* GREETING */
+
+#typed {
+  min-height: 280px;
+  text-align: left;
+  white-space: pre-wrap;
+  font: 1.05rem/1.9 Georgia,serif;
+}
+
+.type-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: #cf4f83;
+  animation: blink .7s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* QUESTIONS */
+
+.question-card {
+  min-height: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.answer-art {
+  height: 140px;
+  width: 180px;
+  display: grid;
+  place-items: center;
+  font-size: 5rem;
+  margin: 10px auto;
+  animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+  to { transform: translateY(-12px) rotate(5deg); }
+}
+
+.choice-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+/* FINAL SECTION */
+
+.final-panel {
+  overflow: hidden;
+}
+
+.then {
+  font-size: 2.2rem;
+  color: #b84c7c;
+  animation: fadeThen 3s forwards;
+}
+
+@keyframes fadeThen {
+  0%,65% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.ask-question {
+  opacity: 0;
+  animation: askAppear 1.5s 3s forwards;
+}
+
+@keyframes askAppear {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.thank-message {
+  opacity: 0;
+  animation: messageAppear 2s 4.5s forwards;
+  max-width: 680px;
+  margin: 25px auto;
+}
+
+.thank-message p {
+  line-height: 1.9;
+  color: #75435b;
+}
+
+@keyframes messageAppear {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* GROWING TREE */
+
+.tree-title {
+  opacity: 0;
+  animation: messageAppear 1.5s 6.5s forwards;
+}
+
+.growing-tree {
+  max-width: 470px;
+  height: 390px;
+  margin: 25px auto;
+}
+
+.growing-tree svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.growing-trunk {
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: trunkGrow 3s 7s ease forwards;
+}
+
+@keyframes trunkGrow {
+  to { stroke-dashoffset: 0; }
+}
+
+.tree-heart {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+  animation:
+    heartGrow .8s var(--delay,1s) ease-out forwards,
+    gentleSway 3s calc(var(--delay,1s) + .8s) ease-in-out infinite alternate;
+}
+
+@keyframes heartGrow {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gentleSway {
+  to {
+    transform: scale(1) rotate(5deg);
+  }
+}
+
+/* PHOTO GALLERY */
+
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 14px;
+  max-width: 430px;
+  margin: 35px auto;
+}
+
+.photo-gallery img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 4px solid white;
+  border-radius: 20px;
+  box-shadow: 0 8px 22px #c65c8c35;
+  opacity: 0;
+  animation: photoReveal .9s ease forwards;
+}
+
+.photo-gallery img:nth-child(1) {
+  animation-delay: 11s;
+}
+
+.photo-gallery img:nth-child(2) {
+  animation-delay: 11.3s;
+}
+
+.photo-gallery img:nth-child(3) {
+  animation-delay: 11.6s;
+}
+
+.photo-gallery img:nth-child(4) {
+  animation-delay: 11.9s;
+}
+
+@keyframes photoReveal {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* PHOTO FALLBACK */
+
+.photo-fallback {
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  background: #ffe5ef;
+  border: 3px dashed #e89aba;
+  border-radius: 20px;
+  color: #a83268;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+/* ASK PERMISSION PAGE */
+
+#askScreen .panel {
+  max-width: 700px;
+}
+
+.ask-title {
+  opacity: 0;
+  animation: slowFade 2.5s forwards;
+}
+
+.ask-description {
+  opacity: 0;
+  animation: slowFade 2s 1.5s forwards;
+}
+
+.ask-continue {
+  opacity: 0;
+  animation: slowFade 1.5s 3s forwards;
+}
+
+@keyframes slowFade {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* CONFESSION PAGE */
+
+#confessionScreen .panel {
+  max-width: 750px;
+  min-height: 430px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.confession-line {
+  opacity: 0;
+  transform: translateY(20px);
+  margin: 20px 0;
+  transition: opacity 2.5s ease, transform 2.5s ease;
+}
+
+.confession-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.confession-first {
+  font-size: clamp(1.3rem,4vw,2rem);
+  color: #87506a;
+}
+
+.confession-second {
+  font-size: clamp(1.5rem,5vw,2.3rem);
+  color: #b84c7c;
+}
+
+.confession-third {
+  font-size: clamp(1.1rem,3.5vw,1.7rem);
+  color: #87506a;
+  max-width: 600px;
+}
+
+.confession-final {
+  font: bold clamp(2rem,7vw,4rem)/1.2 Arial,sans-serif;
+  color: #a52e65;
+  letter-spacing: 1px;
+  margin-top: 35px;
+}
+
+.confession-footer {
+  opacity: 0;
+  margin-top: 25px;
+  transition: opacity 2s ease;
+}
+
+.confession-footer.visible {
+  opacity: 1;
+}
+
+/* MUSIC PLAYER */
+
+#musicPlayer {
+  width: 100%;
+  max-width: 420px;
+  margin: 25px auto 0;
+}
+
+#musicPlayer iframe {
+  width: 100%;
+  height: 180px;
+  border: 0;
+  border-radius: 14px;
+}
+
+.music-note {
+  color: #9a315f;
+  font-size: .9rem;
+  margin-top: 12px;
+}
+
+footer {
+  font: .8rem Arial,sans-serif;
+  color: #9c6c81;
+  margin-top: 28px;
+}
+
+/* MOBILE */
+
+@media(max-width:520px) {
+  .tree-wrap { height: 300px; }
+  .growing-tree { height: 300px; }
+  .panel { padding: 24px 18px; }
+  .photo-gallery { gap: 9px; }
+  .photo-gallery img { border-radius: 15px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- OPENING SCREEN -->
+
+<section id="intro" class="screen">
+  <div class="intro-note">
+
+    <p>
+      Before you continue, please take a video of yourself
+      while reading this little letter. You can say something,
+      answer honestly, or simply react however you feel
+      comfortable. There is no pressure, so just be yourself.
+    </p>
+
+    <p class="sign">— Ken</p>
+
+    <div class="pulse">
+      CLICK ANYWHERE TO PROCEED
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FIRST HEART TREE -->
+
+<section id="treeScreen" class="screen hidden">
+  <div class="panel">
+
+    <p class="small">A little garden of good wishes</p>
+
+    <h1>A Tree Full of Hearts ♡</h1>
+
+    <div class="tree-wrap">
+
+      <svg class="tree-svg" viewBox="0 0 500 390">
+
+        <defs>
+          <linearGradient id="trunk" x2="1">
+            <stop stop-color="#986044"/>
+            <stop offset="1" stop-color="#d49a78"/>
+          </linearGradient>
+        </defs>
+
+        <path
+          d="M250 350 C245 290 255 250 245 205
+          C230 170 205 155 190 125
+          M250 230 C270 190 300 175 315 135
+          M247 270 C215 240 185 230 160 205
+          M252 260 C285 235 330 225 350 195"
+          fill="none"
+          stroke="url(#trunk)"
+          stroke-width="18"
+          stroke-linecap="round"
+        />
+
+        <g fill="#e85d98">
+
+          <path class="heart" style="animation-delay:.1s"
+            d="M190 78 C160 48 120 91 190 145 C260 91 220 48 190 78Z"/>
+
+          <path class="heart" style="animation-delay:.25s"
+            d="M300 66 C270 36 230 79 300 133 C370 79 330 36 300 66Z"/>
+
+          <path class="heart" style="animation-delay:.4s"
+            d="M250 35 C220 5 180 48 250 102 C320 48 280 5 250 35Z"/>
+
+          <path class="heart" style="animation-delay:.55s"
+            d="M130 145 C105 120 70 155 130 200 C190 155 155 120 130 145Z"/>
+
+          <path class="heart" style="animation-delay:.7s"
+            d="M365 140 C340 115 305 150 365 195 C425 150 390 115 365 140Z"/>
+
+          <path class="heart" style="animation-delay:.85s"
+            d="M205 150 C180 125 145 160 205 205 C265 160 230 125 205 150Z"/>
+
+          <path class="heart" style="animation-delay:1s"
+            d="M290 145 C265 120 230 155 290 200 C350 155 315 120 290 145Z"/>
+
+          <path class="heart" style="animation-delay:1.15s"
+            d="M165 205 C145 185 115 215 165 252 C215 215 185 185 165 205Z"/>
+
+          <path class="heart" style="animation-delay:1.3s"
+            d="M335 205 C315 185 285 215 335 252 C385 215 355 185 335 205Z"/>
+
+        </g>
+
+        <g fill="#f7a9c7">
+          <circle cx="90" cy="105" r="7"/>
+          <circle cx="405" cy="90" r="6"/>
+          <circle cx="245" cy="120" r="6"/>
+          <circle cx="105" cy="235" r="5"/>
+          <circle cx="390" cy="245" r="7"/>
+        </g>
+
+        <path
+          d="M175 354 Q250 330 325 354"
+          fill="none"
+          stroke="#b77b83"
+          stroke-width="5"
+          stroke-linecap="round"
+        />
+
+      </svg>
+
+    </div>
+
+    <p>
+      May your day bloom with happiness, laughter,
+      and lovely memories.
+    </p>
+
+    <button id="toGreeting">
+      Continue ♡
+    </button>
+
+  </div>
+</section>
+
+
+<!-- BIRTHDAY GREETING -->
+
+<section id="greetingScreen" class="screen hidden">
+  <div class="panel">
+
+    <p class="small">A message from Ken</p>
+
+    <h1>Happy Birthday! ♡</h1>
+
+    <div id="typed"></div>
+
+    <button id="toQuestions" class="hidden">
+      Continue to the next part ♡
+    </button>
+
+  </div>
+</section>
+
+
+<!-- QUESTIONS -->
+
+<section id="questionScreen" class="screen hidden">
+  <div class="panel question-card">
+
+    <p class="small" id="questionCount">
+      A tiny question · 1 of 3
+    </p>
+
+    <h2 id="questionText">
+      Are you ready for the special gift?
+    </h2>
+
+    <div id="answerArt" class="answer-art">
+      🎁
+    </div>
+
+    <p id="answerMessage" class="small">
+      Choose whichever answer feels right.
+    </p>
+
+    <div class="choice-row">
+
+      <button id="yesBtn">Yes</button>
+
+      <button id="noBtn">No</button>
+
+    </div>
+
+    <button id="nextQuestion" class="hidden">
+      Continue ♡
+    </button>
+
+  </div>
+</section>
+
+
+<!-- THANK YOU AND HEART TREE SECTION -->
+
+<section id="finalScreen" class="screen hidden">
+  <div class="panel final-panel">
+
+    <div class="then">
+      Alright then...
+    </div>
+
+    <h2 class="ask-question">
+      Can I ask you something? ♡
+    </h2>
+
+    <!-- THANK YOU MESSAGE -->
+
+    <div class="thank-message">
+
+      <p>
+        Before anything else, I just want to say how thankful
+        I am to have you in my life. I genuinely appreciate
+        every moment we spend together, even the simplest
+        ones that might seem ordinary to other people.
+      </p>
+
+      <p>
+        I appreciate our late-night conversations, the random
+        chats, the little updates about how our days went,
+        and the way we always find time to talk to each other.
+        Even when we're both busy, those little moments mean
+        more to me than you probably realize.
+      </p>
+
+      <p>
+        Thank you for the reassurance, the understanding,
+        the patience, and for making our everyday conversations
+        something I look forward to. I don't know how to
+        explain it perfectly, but I'm genuinely happy that
+        I get to share these little moments with you.
+      </p>
+
+      <p>
+        I hope we get to make even more memories together.
+        And now, there's just one thing I want to ask you...
+      </p>
+
+      <p>— Ken ♡</p>
+
+    </div>
+
+
+    <!-- GROWING HEART TREE -->
+
+    <h2 class="tree-title">
+      A little something for you...
+    </h2>
+
+    <div class="growing-tree">
+
+      <svg viewBox="0 0 500 440">
+
+        <defs>
+          <linearGradient id="newTrunk" x2="1">
+            <stop stop-color="#956047"/>
+            <stop offset="1" stop-color="#d59b79"/>
+          </linearGradient>
+        </defs>
+
+        <path
+          class="growing-trunk"
+          d="M250 400
+          C245 330 250 280 250 220
+          C220 185 190 175 170 130
+          M250 300 C280 255 315 235 340 190
+          M250 345 C205 315 175 290 145 255
+          M250 330 C295 300 330 280 365 250"
+          fill="none"
+          stroke="url(#newTrunk)"
+          stroke-width="12"
+          stroke-linecap="round"
+        />
+
+        <g fill="#ed72a5">
+
+          <path class="tree-heart" style="--delay:8s"
+            d="M170 65 C150 45 125 70 170 105 C215 70 190 45 170 65Z"/>
+
+          <path class="tree-heart" style="--delay:8.2s"
+            d="M250 30 C230 10 205 35 250 70 C295 35 270 10 250 30Z"/>
+
+          <path class="tree-heart" style="--delay:8.4s"
+            d="M330 65 C310 45 285 70 330 105 C375 70 350 45 330 65Z"/>
+
+          <path class="tree-heart" style="--delay:8.6s"
+            d="M110 130 C95 115 75 135 110 165 C145 135 125 115 110 130Z"/>
+
+          <path class="tree-heart" style="--delay:8.8s"
+            d="M205 115 C190 100 170 120 205 150 C240 120 220 100 205 115Z"/>
+
+          <path class="tree-heart" style="--delay:9s"
+            d="M295 115 C280 100 260 120 295 150 C330 120 310 100 295 115Z"/>
+
+          <path class="tree-heart" style="--delay:9.2s"
+            d="M390 130 C375 115 355 135 390 165 C425 135 405 115 390 130Z"/>
+
+          <path class="tree-heart" style="--delay:9.4s"
+            d="M155 190 C140 175 120 195 155 225 C190 195 170 175 155 190Z"/>
+
+          <path class="tree-heart" style="--delay:9.6s"
+            d="M250 175 C235 160 215 180 250 210 C285 180 265 160 250 175Z"/>
+
+          <path class="tree-heart" style="--delay:9.8s"
+            d="M345 190 C330 175 310 195 345 225 C380 195 360 175 345 190Z"/>
+
+          <path class="tree-heart" style="--delay:10s"
+            d="M200 235 C185 220 165 240 200 270 C235 240 215 220 200 235Z"/>
+
+          <path class="tree-heart" style="--delay:10.2s"
+            d="M300 235 C285 220 265 240 300 270 C335 240 315 220 300 235Z"/>
+
+        </g>
+
+        <g fill="#ffb3d0">
+          <circle cx="90" cy="85" r="4"/>
+          <circle cx="410" cy="80" r="4"/>
+          <circle cx="130" cy="210" r="3"/>
+          <circle cx="370" cy="215" r="4"/>
+          <circle cx="250" cy="90" r="3"/>
+          <circle cx="180" cy="290" r="4"/>
+          <circle cx="320" cy="300" r="3"/>
+        </g>
+
+        <path
+          d="M160 405 Q250 380 340 405"
+          stroke="#c48a94"
+          stroke-width="4"
+          fill="none"
+          stroke-linecap="round"
+        />
+
+      </svg>
+
+    </div>
+
+
+    <!-- FOUR PICTURES -->
+
+    <h2 class="tree-title">
+      Some little memories ♡
+    </h2>
+
+    <div class="photo-gallery">
+
+      <img src="1.jpg" alt="Memory 1">
+      <img src="2.jpg" alt="Memory 2">
+      <img src="5.jpg" alt="Memory 3">
+      <img src="6.jpg" alt="Memory 4">
+
+    </div>
+
+
+    <!-- BUTTON TO THE NEW ASK PAGE -->
+
+    <div style="margin-top:45px; padding:20px;">
+
+      <p class="small">
+        There's something I've been wanting to ask you...
+      </p>
+
+      <button id="toAskScreen">
+        Continue ♡
+      </button>
+
+    </div>
+
+    <footer>
+      Made with love — Ken ♡
+    </footer>
+
+  </div>
+</section>
+
+
+<!-- CAN I ASK YOU SOMETHING PAGE -->
+
+<section id="askScreen" class="screen hidden">
+
+  <div class="panel">
+
+    <p class="small">Before I say anything...</p>
+
+    <h1 class="ask-title">
+      Can I ask you something? ♡
+    </h1>
+
+    <p class="ask-description">
+      There's something I've been wanting to tell you.
+      I've been thinking about it for a while,
+      and I finally decided to ask.
+    </p>
+
+    <p class="ask-description">
+      But first, I hope you're ready to hear me out.
+    </p>
+
+    <div class="ask-continue" style="margin-top:35px;">
+
+      <button id="toConfession">
+        Continue ♡
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CONFESSION PAGE -->
+
+<section id="confessionScreen" class="screen hidden">
+
+  <div class="panel">
+
+    <p class="small">There's something I want to tell you...</p>
+
+    <div id="confessionContent">
+
+      <h2 id="line1" class="confession-line confession-first">
+        I'm kindaa nervous
+      </h2>
+
+      <h2 id="line2" class="confession-line confession-second">
+        But....
+      </h2>
+
+      <p id="line3" class="confession-line confession-third">
+        If its okay with you if...
+      </p>
+
+      <h1 id="line4" class="confession-line confession-final">
+        I will court you? :> ♡
+      </h1>
+
+    </div>
+
+    <p id="confessionFooter" class="confession-footer">
+      Whatever your answer is, I'll respect it. ♡
+      <br><br>
+      — Ken
+    </p>
+
+    <!-- LANY ILYSB MUSIC PLAYER -->
+
+    <div id="musicPlayer">
+
+      <p class="music-note">
+        A little song for you ♡
+      </p>
+
+      <div id="youtubePlayer"></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<script>
+
+// ===================================
+// SCREEN NAVIGATION
+// ===================================
+
+const screens = [
+  'intro',
+  'treeScreen',
+  'greetingScreen',
+  'questionScreen',
+  'finalScreen',
+  'askScreen',
+  'confessionScreen'
+];
+
+function show(id) {
+
+  screens.forEach(s => {
+
+    document.getElementById(s)
+      .classList.toggle('hidden',s !== id);
+
+  });
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+
+}
+
+
+// ===================================
+// INTRODUCTION
+// ===================================
+
+document.getElementById('intro')
+.addEventListener('click',() => {
+
+  show('treeScreen');
+
+});
+
+
+// ===================================
+// FLOATING HEARTS
+// ===================================
+
+function floatHeart() {
+
+  const heart = document.createElement('div');
+
+  heart.className = 'float-heart';
+
+  heart.textContent =
+    Math.random() > .5 ? '♥' : '♡';
+
+  heart.style.left =
+    Math.random() * 100 + 'vw';
+
+  heart.style.fontSize =
+    (12 + Math.random() * 23) + 'px';
+
+  heart.style.animationDuration =
+    (6 + Math.random() * 5) + 's';
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  },11000);
+
+}
+
+setInterval(() => {
+
+  if (
+    !document.getElementById('treeScreen')
+    .classList.contains('hidden') ||
+
+    !document.getElementById('finalScreen')
+    .classList.contains('hidden') ||
+
+    !document.getElementById('confessionScreen')
+    .classList.contains('hidden')
+  ) {
+
+    floatHeart();
+
+  }
+
+},450);
+
+
+// ===================================
+// FIRST TREE TO GREETING
+// ===================================
+
+document.getElementById('toGreeting')
+.addEventListener('click',() => {
+
+  show('greetingScreen');
+
+  startTyping();
+
+});
+
+
+// ===================================
+// BIRTHDAY GREETING
+// ===================================
+
+const paragraphs = [
+
+`Happy birthday! I hope you enjoy this special day and make plenty of beautiful memories. You deserve a day filled with happiness, laughter, and all the little things that make you smile. I hope the year ahead brings you new opportunities and reasons to be proud of yourself. Always remember that you are appreciated, and today is a wonderful chance to celebrate you.`,
+
+`I hope you get to spend this day with the people who make you feel loved and valued. May every challenge you face help you grow, and may every good moment remind you how much there is to look forward to. Keep being the kind and wonderful person you are. I wish you good health, peace, success, and genuine happiness in everything you do. Enjoy every moment of your birthday because this day is all about you.`,
+
+`Thank you for being someone I am glad to know. I made this little surprise to make your birthday a bit more memorable, and I hope it brings a smile to your face. Whatever this new chapter brings, I hope it treats you kindly and gives you many reasons to keep going. Have fun, take lots of pictures, eat something delicious, and never forget to celebrate yourself. Happy birthday once again! — Ken.`
+
+];
+
+let typingStarted = false;
+
+function startTyping() {
+
+  if (typingStarted) return;
+
+  typingStarted = true;
+
+  const box = document.getElementById('typed');
+
+  const btn = document.getElementById('toQuestions');
+
+  const full = paragraphs.join('\n\n');
+
+  let i = 0;
+
+  const cursor = document.createElement('span');
+
+  cursor.className = 'type-cursor';
+
+  box.appendChild(cursor);
+
+  const timer = setInterval(() => {
+
+    if (i >= full.length) {
+
+      clearInterval(timer);
+
+      cursor.remove();
+
+      btn.classList.remove('hidden');
+
+      return;
+
+    }
+
+    cursor.insertAdjacentText(
+      'beforebegin',
+      full[i++]
+    );
+
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
+    });
+
+  },22);
+
+}
+
+
+// ===================================
+// GREETING TO QUESTIONS
+// ===================================
+
+document.getElementById('toQuestions')
+.addEventListener('click',() => {
+
+  show('questionScreen');
+
+  setQuestion(0);
+
+});
+
+
+// ===================================
+// THREE QUESTIONS
+// ===================================
+
+let q = 0;
+
+let answered = false;
+
+const questions = [
+
+  'Are you ready for the special gift?',
+
+  'Are you really ready?',
+
+  'Are you sure you are ready?'
+
+];
+
+
+function setQuestion(n) {
+
+  q = n;
+
+  answered = false;
+
+  document.getElementById('questionCount')
+  .textContent = `A tiny question · ${n+1} of 3`;
+
+  document.getElementById('questionText')
+  .textContent = questions[n];
+
+  document.getElementById('answerArt')
+  .textContent = '🎁';
+
+  document.getElementById('answerMessage')
+  .textContent = 'Choose whichever answer feels right.';
+
+  document.getElementById('yesBtn')
+  .classList.remove('hidden');
+
+  document.getElementById('noBtn')
+  .classList.remove('hidden');
+
+  document.getElementById('nextQuestion')
+  .classList.add('hidden');
+
+}
+
+
+// ===================================
+// YES OR NO REACTIONS
+// ===================================
+
+function answer(yes) {
+
+  document.getElementById('answerArt')
+  .textContent = yes ? '🤡' : '🥺';
+
+  document.getElementById('answerMessage')
+  .textContent = yes
+    ? 'HAHA! You really thought the gift was that easy? 😆'
+    : 'Aww, that is okay. No pressure at all. ♡';
+
+  document.getElementById('yesBtn')
+  .classList.add('hidden');
+
+  document.getElementById('noBtn')
+  .classList.add('hidden');
+
+  answered = true;
+
+  const next =
+    document.getElementById('nextQuestion');
+
+  next.classList.remove('hidden');
+
+  next.textContent =
+    q === 2
+    ? 'One last surprise ♡'
+    : 'Continue ♡';
+
+}
+
+
+document.getElementById('yesBtn')
+.addEventListener('click',() => {
+
+  answer(true);
+
+});
+
+
+document.getElementById('noBtn')
+.addEventListener('click',() => {
+
+  answer(false);
+
+});
+
+
+// ===================================
+// QUESTIONS TO FINAL SECTION
+// ===================================
+
+document.getElementById('nextQuestion')
+.addEventListener('click',() => {
+
+  if (!answered) return;
+
+  if (q < 2) {
+
+    setQuestion(q + 1);
+
+  } else {
+
+    show('finalScreen');
+
+  }
+
+});
+
+
+// ===================================
+// PHOTO ERROR HANDLING
+// ===================================
+
+document.querySelectorAll('.photo-gallery img')
+.forEach((img, index) => {
+
+  img.addEventListener('error', () => {
+
+    const fallback = document.createElement('div');
+
+    fallback.className = 'photo-fallback';
+
+    fallback.textContent =
+      `Photo ${index + 1} could not load. Check the filename and folder.`;
+
+    img.replaceWith(fallback);
+
+  });
+
+});
+
+
+// ===================================
+// FINAL SECTION TO ASK PAGE
+// ===================================
+
+document.getElementById('toAskScreen')
+.addEventListener('click',() => {
+
+  show('askScreen');
+
+});
+
+
+// ===================================
+// ASK PAGE TO CONFESSION
+// ===================================
+
+document.getElementById('toConfession')
+.addEventListener('click',() => {
+
+  show('confessionScreen');
+
+  startConfession();
+
+});
+
+
+// ===================================
+// LANY - ILYSB MUSIC
+// ===================================
+
+let musicStarted = false;
+
+function startMusic() {
+
+  if (musicStarted) return;
+
+  musicStarted = true;
+
+  const player = document.getElementById('youtubePlayer');
+
+  const iframe = document.createElement('iframe');
+
+  iframe.src =
+    'https://www.youtube.com/embed/SSTp0rknOgA?autoplay=1&playsinline=1';
+
+  iframe.title = 'LANY - ILYSB Official Video';
+
+  iframe.allow =
+    'autoplay; encrypted-media; picture-in-picture';
+
+  iframe.allowFullscreen = true;
+
+  iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+
+  player.appendChild(iframe);
+
+}
+
+
+// ===================================
+// SLOW CONFESSION ANIMATION
+// ===================================
+
+let confessionStarted = false;
+
+function startConfession() {
+
+  if (confessionStarted) return;
+
+  confessionStarted = true;
+
+  // Start the song as the visitor enters the confession page.
+  startMusic();
+
+  const lines = [
+    document.getElementById('line1'),
+    document.getElementById('line2'),
+    document.getElementById('line3'),
+    document.getElementById('line4')
+  ];
+
+  const footer =
+    document.getElementById('confessionFooter');
+
+  // First sentence
+
+  setTimeout(() => {
+
+    lines[0].classList.add('visible');
+
+  },1000);
+
+
+  // Second sentence
+
+  setTimeout(() => {
+
+    lines[1].classList.add('visible');
+
+  },4500);
+
+
+  // Third sentence
+
+  setTimeout(() => {
+
+    lines[2].classList.add('visible');
+
+  },8000);
+
+
+  // Final confession
+
+  setTimeout(() => {
+
+    lines[3].classList.add('visible');
+
+  },12500);
+
+
+  // Final message
+
+  setTimeout(() => {
+
+    footer.classList.add('visible');
+
+  },15000);
+
+}
+
+</script>
+
+</body>
+</html>
